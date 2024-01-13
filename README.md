@@ -1,0 +1,2 @@
+# Calclator
+Odin Project excercise
