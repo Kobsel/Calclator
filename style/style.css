@@ -78,6 +78,13 @@ input {
 
     flex: 1 1 auto;
     height: 30px;
+    background-color:  rgb(64, 64, 139);
+    border: solid black 1px;
+    border-radius: 3px;
+    color: white;
+    font-weight: 900;
+    font-size: 15px;
+    
     
 
 }
@@ -92,10 +99,18 @@ input {
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    flex: 1 1 auto;
 }
 
 #Operations button {
 
+    background-color:  rgb(64, 64, 139);
+    border: solid black 1px;
+    border-radius: 3px;
+    color: white;
+    font-weight: 900;
+    font-size: 15px;
+    
     height: 30px;
     flex: 1 1 auto;
 

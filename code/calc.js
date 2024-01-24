@@ -58,3 +58,49 @@ function operate(operator, numb1, numb2) {
 }
 
 console.log(operate('/', 4, 5));
+
+//Create Variables for the Display elements
+
+
+var inputfield = document.querySelector('input')
+var textfield = document.querySelector('p')
+
+
+//Create functionality of Clear Button
+
+var clear = document.querySelector('#Clear-Button')
+clear.addEventListener('click', function(e){
+
+    inputfield.value = ''
+    textfield.textContent = ''
+
+
+})
+
+
+
+var buttons = document.querySelector('#Number-Pad')
+buttons.addEventListener('click', function(e){
+
+    var id = e.target.id
+    console.log(id)
+
+    
+
+    if(id !== '/'){
+
+
+    } else if(id === 'Dot') {
+
+        textfield.textContent = textfield.textContent + '.'
+
+
+    } else {
+
+        inputfield.value = id
+        textfield.textContent = textfield.textContent + id
+
+    }
+    
+
+})
