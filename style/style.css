@@ -1,0 +1,103 @@
+#Calculator {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+
+}
+
+input {
+
+    width: 293px;
+    border: 0;
+    flex: 1 1 auto
+
+}
+
+#Display {
+
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+   
+
+
+    margin-bottom: 1%;
+    margin-top: 20%;
+    border: solid black 1px;
+    padding: 7px;
+    
+    height: 100px;
+    width: 293px;
+    
+}
+
+#Text {
+
+    
+
+}
+
+#Number-Pad {
+
+    
+    display: flex;
+    flex-direction: row;
+    height: 400px;
+    width: 300px;
+
+}
+
+.collum {
+
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+
+}
+
+#Number-Pad button {
+
+    flex: 1 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    
+
+}
+
+#Functional {
+    display: flex;
+    flex-direction: row;
+}
+
+#Functional button {
+
+    flex: 1 1 auto;
+    height: 30px;
+    
+
+}
+
+.Container {
+    display: flex;
+    flex-direction: row;
+    width: 350px;
+}
+
+#Operations {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+#Operations button {
+
+    height: 30px;
+    flex: 1 1 auto;
+
+}
+
