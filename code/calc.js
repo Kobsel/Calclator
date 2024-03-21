@@ -22,7 +22,7 @@ function muliply(...numbers){
 
 function divide(numb1 , numb2){
 
-    if(numb1 === 0){
+    if(numb2 === 0){
         prompt("DIVIDE BY ZERO ERROR!")
     }
     return numb1 / numb2;
@@ -57,6 +57,8 @@ function simpleOperate(operator, numb1, numb2) {
 
 }
 
+console.log(simpleOperate('+', 7, 8))
+
 
 
 //Create Variables for the Display elements
@@ -71,8 +73,29 @@ var numb1;
 var numb2;
 var operator;
 
-var numb2Index = -1;
-var firstNumberSet = false;
+var numberIndexStart;
+var firstNumberSet;
+var pointer;
+var numbersSet;
+
+function init(){
+
+    inputfield.value = ''
+    textfield.textContent = ''
+    
+    numb1 = -1;
+    numb2 = -1;
+    operator = '';
+    prevOperator = ''
+
+    numberIndexStart = 0;
+    pointer = 0;
+    firstNumberSet = false;
+    numbersSet = 0;
+}
+
+init()
+
 
 
 //Create functionality of Clear Button
@@ -80,47 +103,58 @@ var firstNumberSet = false;
 var clear = document.querySelector('#Clear-Button')
 clear.addEventListener('click', function(e){
 
-    inputfield.value = ''
-    textfield.textContent = ''
-
+  init()
 
 })
 
 
 
+//functionality of Number Buttons
+
 var numberButtons = document.querySelector('#Number-Pad')
 numberButtons.addEventListener('click', function(e){
 
-    var id = e.target.id
-    console.log(id)
+    var id = e.target.id;
 
-    
+    if(id !== '/' && id !== 'Dot'){
 
-    if(id === '/'){
+        inputfield.value = id;
+        textfield.textContent += id;
 
-        // I dunno
+        confirmNumber(id)
 
-    } else if(id === 'Dot') {
-
-        textfield.textContent = textfield.textContent + '.'
-
-    } else {
-
-        if(firstNumberSet && numb2Index === -1) {
-
-            numb2Index = textfield.textContent.length
-
-        }
-
-        inputfield.value = id
-        textfield.textContent = textfield.textContent + id
-
+        
         
 
     }
     
 
 })
+
+function confirmNumber(number){
+
+    if(operator === ''){
+
+        numb1 = buildNumber(numb1, number)
+
+    } else {
+
+        numb2 = buildNumber(numb2, number)
+
+    }
+
+}
+
+function buildNumber(head, tail){
+
+    console.log("build")
+    if(head < 0){
+        return tail;
+    }
+
+    return parseInt(String(head) + String(tail))
+
+}
 
 
 
@@ -131,40 +165,42 @@ var operators   =   document.querySelector('#Operations')
 operators.addEventListener('click', function(e){
 
     var id = e.target.id
+    
 
-    if(id === 'Delete'){
+    if(id === "Operate") {
 
-        deleteLastCharacter(textfield.textContent)
+        //Calculating value resulting from current operator and numbers.
+        //numbers need to be parsed to Int explicitly for simpleOperate to function appropriatly
 
-    }  else if(id === 'Operate') {
+        inputfield.value = simpleOperate(operator, parseInt(numb1), parseInt(numb2))
 
-        const text = textfield.textContent
-        numb2 = parseInt(text.slice(numb2Index, text.length))
-
-        textfield.textContent = simpleOperate(operator, numb1, numb2)
-
-    }
-    else {
-
-        operator = id
-
-        if(!firstNumberSet){
-
-            numb1 = parseInt(textfield.textContent)
-            firstNumberSet = true
-
-        }
-      
-
-        if(wasLastButtonNumber()){
-            inputfield.value = id
-            textfield.textContent = textfield.textContent + ' ' + id + ' '
-        }
-
+        console.log("Operator: " + operator + "numb1: " + numb1 + "numb2: " + numb2)
 
 
     }
+    else if(id === "Delete") {
 
+
+    }
+    else{
+
+        prevOperator = operator
+        operator = id;
+        
+
+        textfield.textContent = textfield.textContent += " " + id + " "
+
+        if(numb2 !== -1){
+
+            numb1 = simpleOperate(prevOperator, parseInt(numb1), parseInt(numb2));
+            numb2 = -1;
+            inputfield.value = numb1;
+
+        }
+
+    }
+
+   
 })
 
 function deleteLastCharacter(string){
